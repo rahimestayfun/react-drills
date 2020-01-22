@@ -7,31 +7,40 @@ class App extends Component {
   constructor(){
     super();
     this.state={
-      leiaOrgana: ''
+      walterWhite: '',
+      // jessePinkman: ''
     }
   }
   componentDidMount(){
-  axios.get("https://swapi.co/api/people/5").then((response)=>{
-  // console.log(response.data.results)  
-  this.setState({leiaOrgana: response.data})
-
-  }).catch()
+  axios.get("https://www.breakingbadapi.com/api/characters/1").then((response)=>{
+  console.log(response.data)  
+  this.setState({walterWhite: response.data[0]})
+  })
 }
-
+// , jessePinkman: response.data[1]
   render() {
     return (
       <div className="App">
-        <h1>Name: {this.state.leiaOrgana.name}</h1>
-        <h1>Gender: {this.state.leiaOrgana.gender}</h1>
-        <h1>Birth Year: {this.state.leiaOrgana.birth_year}</h1>
-        <h1>Hair Color: {this.state.leiaOrgana.hair_color}</h1>
-        <h1>Skin Color: {this.state.leiaOrgana.skin_color}</h1>
+        <h1>BREAKING BAD CHARACTERS</h1>
+        <div>
+        <h2>Name: {this.state.walterWhite.name}</h2>
+        <h2>Birthday: {this.state.walterWhite.birthday}</h2>
+        <h2>Nickname: {this.state.walterWhite.nickname}</h2>
+        <h2>Occupation: {this.state.walterWhite.occupation}</h2>
+        </div>
+
+        {/* <div>
+        <h2>Name: {this.state.jessePinkman.name}</h2>
+        <h2>Birthday: {this.state.jessePinkman.birthday}</h2>
+        <h2>Nickname: {this.state.jessePinkman.nickname}</h2>
+        <h2>Occupation: {this.state.jessePinkman.occupation}</h2>
+        </div> */}
                 
-        
- 
       </div>
     );
   }
 }
 
 export default App;
+
+

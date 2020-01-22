@@ -1,62 +1,48 @@
-//ASK MENTOR
+import React from "react";
+import "./App.css";
+import Todo from "./components/Todo";
 
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      taskList: ["go to grocery", "mop the floors"],
+      userInput: ""
+    };
+  }
+  handleInputChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    });
+  };
+  handleAdd = () => {
+    const { taskList, userInput } = this.state;
+    this.setState({
+      // taskList:[...taskList,userInput]
+      taskList: taskList.concat(userInput),
+      userInput: ""
+    });
+  };
+  render() {
+    let mappedTask = this.state.taskList.map((el, i) => {
+      return <Todo key={i} task={el} />;
+    });
+    return (
+      <div className="App">
+        <div>
+          <h2>To Do List</h2>
+          <input
+            name="userInput"
+            placeholder="Enter a new Task"
+            value={this.state.userInput}
+            onChange={this.handleInputChange}
+          />
+          <button onClick={this.handleAdd}>Add Task</button>
+        </div>
+        {mappedTask}
+      </div>
+    );
+  }
+}
 
-// import React, { Component } from "react";
-// import logo from "./logo.svg";
-// import "./App.css";
-// import Todo from "./Todo";
-
-// class App extends Component {
-//   constructor(){
-//     super()
-//     this.state={
-//       list:[],
-//       task: ''
-//     }
-//     this.addTask= this.addTask.bind(this)
-//   }
-//     handleTask(value){
-//        this.setState={ task: value }
-//       }
-//     addTask(){
-//       this.setState={
-//       const {task}= this.state
-//       let copyList = list.slice()
-//       copyList.push({task})
-//     }
-//   }
-    
-
-//   render() {
-//     let list = this.state.list.map((element,index)=>{
-//       return <p key={index}> {element}</p>
-//     })
-//     return (
-//       <div className="App">
-//         <h1>MY TO-DO list</h1>
-//         <input
-//             value={this.state.input}
-//             placeholder="Enter new task"
-//             onChange={e => this.handleInputChange(e.target.value)}
-//           />
-//           <Todo/>
-
-//       </div>
-//     );
-//   }
-// }
-
-// export default App;
-
-
-
-
-
-
-
-
-
-//responsible for getting new tasks and
-// storing the list of tasks.
-//should create a list of TOdo components passing down a task as a prop
-
+export default App;

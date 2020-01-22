@@ -10,17 +10,14 @@ export default class App extends Component {
     }
   }
   render() {
-    let CarList= this.state.cars.map((element,index)=>{
+    let mappedCarList= this.state.cars.map((element,index)=>{
       return <h3 key={index}> {element}</h3>
     })
     return (
-      <div className='App'>{CarList}</div>
+      <div className='App'>{mappedCarList}</div>
     )
   }
 }
-
-
-
 
 
 

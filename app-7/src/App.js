@@ -1,21 +1,57 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
+import NewTask from "./components/NewTask";
+import TaskList from "./components/TaskList";
 
-class App extends Component {
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      taskList: ["go for a walk", "go shopping"],
+      userInput: ""
+    };
+  }
+  handleInputChange = e => {
+    this.setState({
+      userInput: e.target.value
+    });
+  };
+  addNewTask = () => {
+    const { taskList, userInput } = this.state;
+    this.setState({
+      // taskList: [...taskList,userInput]
+      taskList: taskList.concat(userInput),
+      userInput: ""
+    });
+    // console.log(taskList)
+  };
   render() {
     return (
       <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+        <NewTask
+          addNewTask={this.addNewTask}
+          handleInputChange={this.handleInputChange}
+          userInput={this.state.userInput}
+        />
+        <TaskList taskList={this.state.taskList} />
       </div>
     );
   }
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
+//responsible for getting new tasks and
+// storing the list of tasks.
+//should create a list of TOdo components passing down a task as a prop
+
+  
+  
